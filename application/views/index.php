@@ -14,9 +14,11 @@
 </head>
 <body>
 	<div class="container">
-		<h1 class="text-center">Foodspiration</h1>
+		<div>
+			<h1>Foodspiration</h1>
+		</div>
 		<div class="row">
-			<div class="col-md-6">
+			<div class="col-md-5 col-md-offset-1">
 				<h3>Login</h3>
 				<form class="form form-horizontal" action="/login" method="post">
 					<div class="form-group">
@@ -37,7 +39,7 @@
 
 
 
-			<div class="col-md-6">	
+			<div class="col-md-5">	
 				<h3>Register</h3>
 				<form  class="form form-horizontal" action="/register" method="post">
 					<div class="form-group">
@@ -66,7 +68,7 @@
 					</div>
 					<div class="form-group">
 						<label class="label-control col-md-3"></label>
-						<input class="btn  btn-success" type="submit" value="Register">
+						<input class="btn btn-success" type="submit" value="Register">
 					</div>
 				</form>
 				<?= $this->session->flashdata("register_errors") ?>
