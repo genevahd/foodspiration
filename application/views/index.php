@@ -14,9 +14,9 @@
 </head>
 <body>
 	<div class="container">
-		<div>
-			<h1>Foodspiration</h1>
-		</div>
+
+		<?php $this->load->view('nav') ?>
+
 		<div class="row">
 			<div class="col-md-5 col-md-offset-1">
 				<h3>Login</h3>

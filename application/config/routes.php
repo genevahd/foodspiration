@@ -46,6 +46,7 @@ $route['recipes/add'] = "recipes/add";
 $route['recipes/create'] = "recipes/create";
 $route['recipes/like/(:any)'] = "recipes/like/$1";
 $route['recipes/unlike/(:any)'] = "recipes/unlike/$1";
+$route['recipes/delete/(:any)'] = "recipes/delete/$1";
 $route['recipes/(:any)'] = "recipes/show/$1";
 $route['404_override'] = '';
 

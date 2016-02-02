@@ -5,11 +5,13 @@ class Recipes extends CI_Controller {
 	public function index()
 	{
 		// listing all recipes
+		$all_recipes = $this->recipe->get_all();
 		$new_recipes = $this->recipe->get_new();
 		$liked_recipes = $this->recipe->liked_recipes();
 		// var_dump($recipes);
 		// die();
 		$this->load->view("recipes", array(
+				"all_recipes" => $all_recipes,
 				"recipes" => $new_recipes,
 				"liked_recipes" => $liked_recipes
 			));
@@ -45,7 +47,10 @@ class Recipes extends CI_Controller {
 		$this->recipe->unlike($like_id);
 		redirect("/recipes");
 	}
-
+	public function delete($recipe_id){
+		$this->recipe->delete($recipe_id);
+		redirect("/recipes");
+	}
 }
 
 /* End of file welcome.php */
