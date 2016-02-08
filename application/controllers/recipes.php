@@ -8,12 +8,14 @@ class Recipes extends CI_Controller {
 		$all_recipes = $this->recipe->get_all();
 		$new_recipes = $this->recipe->get_new();
 		$liked_recipes = $this->recipe->liked_recipes();
+		$yours = $this->recipe->your_recipes();
 		// var_dump($recipes);
 		// die();
 		$this->load->view("recipes", array(
 				"all_recipes" => $all_recipes,
 				"recipes" => $new_recipes,
-				"liked_recipes" => $liked_recipes
+				"liked_recipes" => $liked_recipes,
+				"yours" => $yours
 			));
 	}
 	public function add(){
@@ -31,10 +33,12 @@ class Recipes extends CI_Controller {
 		$recipe = $this->recipe->get_one($recipe_id);
 		// var_dump($recipe);
 		// die();
+		$yours = $this->recipe->your_recipes();
 		$liked = $this->recipe->is_liked($recipe_id);
 		$this->load->view("show", array(
 				"recipe" => $recipe,
-				"liked" => $liked
+				"liked" => $liked,
+				"yours" => $yours
 			));
 	}
 
@@ -51,6 +55,7 @@ class Recipes extends CI_Controller {
 		$this->recipe->delete($recipe_id);
 		redirect("/recipes");
 	}
+
 }
 
 /* End of file welcome.php */

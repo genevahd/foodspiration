@@ -24,9 +24,9 @@ class Recipe extends CI_Model {
 			// get new recipe id
 			$recipe_id = $this->db->insert_id();
 			// like it!
-			$query = "INSERT INTO likes (recipe_id, user_id, created_at, updated_at) VALUES (?, ?, NOW(), NOW())";
-			$values = array($recipe_id, $this->session->userdata("id"));
-			$this->db->query($query,$values);
+			// $query = "INSERT INTO likes (recipe_id, user_id, created_at, updated_at) VALUES (?, ?, NOW(), NOW())";
+			// $values = array($recipe_id, $this->session->userdata("id"));
+			// $this->db->query($query,$values);
 		}
 	}
 	public function get_all(){
@@ -55,6 +55,11 @@ class Recipe extends CI_Model {
 		$query = "SELECT id FROM likes WHERE recipe_id = ? AND user_id = ?";
 		$values = array($recipe_id, $this->session->userdata("id"));
 		return $this->db->query($query,$values)->row_array();
+	}
+	public function your_recipes(){
+		$query = "SELECT * FROM recipes WHERE user_id = ?";
+		$values = $this->session->userdata("id");
+		return $this->db->query($query, $values)->result_array();
 	}
 
 	public function unlike($like_id){

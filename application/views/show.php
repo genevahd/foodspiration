@@ -13,13 +13,26 @@
 	<title>Recipe</title>
 </head>
 <body>
-	<a href="/recipes">Back to Recipes</a>
+<div class="container">
+	<?php $this->load->view('nav') ?>
 	<h2><?= $recipe["title"] ?></h2>
-	<p><?= $recipe["content"] ?></p>
-<?php if(empty($liked)){ ?>
-				<a href="/recipes/like/<?= $recipe['id']?>"><button>Like</button></a>
-<?php } else { ?>	
-				<a href="/recipes/unlike/<?= $liked['id']?>"><button>Unlike</button></a>
-<?php } ?>
+	<div class="col-md-5">
+		<img src="<?=$recipe['image']?>" class="img-responsive">
+	</div>
+	<div class="col-md-5 col-md-offset-1">
+		<p><?= $recipe["content"] ?></p>
+		<?php
+				if(empty($liked)){ ?>
+								<a href="/recipes/like/<?= $recipe['id']?>"><button>Like</button></a>
+				<?php } else { ?>	
+								<a href="/recipes/unlike/<?= $liked['id']?>"><button>Unlike</button></a>
+				<?php }
+			
+			if($recipe['user_id'] == $this->session->userdata("id")){ ?>
+				<a href="/recipes/delete/<?= $recipe['id']?>">Delete</a> 
+		<?php } ?>
+	</div>
+		
+</div>
 </body>
 </html>

@@ -30,15 +30,21 @@
 
 
 				</td>
-				<td><a href="/recipes/delete/<?= $recipe['id']?>">Delete</a></td>
+				<td><?php if($recipe['user_id'] == $this->session->userdata("id")){ ?>
+
+
+					<a href="/recipes/delete/<?= $recipe['id']?>">Delete</a> <?php } ?> </td>
 				</tr>
 				<?php } ?>
 			</table>
 		</div>
 
 		<div class="col-md-5  col-md-offset-1">
-			<a class="btn btn-primary" href="/recipes/add"><h3> Add a new recipe</h3></a>
-			<h4>Liked Recipes</h4>
+			<div class="row">
+			<a class="btn btn-primary col-md-6 col-md-offset-3" href="/recipes/add"><h4> Add a new recipe</h4></a></div>
+			<h2> </h2>
+
+			<div class="row"><h4 class="text-center">Liked Recipes</h4></div>
 			<table class="table">
 			<?php foreach($liked_recipes as $liked){ ?>
 						<tr>
@@ -52,6 +58,19 @@
 
 			</table>
 
+			<div class="row"><h4 class="text-center">Your Recipes</h4></div>
+			<table class="table">
+			<?php foreach($yours as $your){ ?>
+						<tr>
+							<td><a href="/recipes/<?= $your['id']?>"><?= $your["title"] ?></a></td>
+							<td>
+								<p>Liked <?= ago($your["created_at"]) ?></p>
+							</td>
+						</tr>
+			<?php } ?>	
+			
+
+			</table>
 			
 		</div>
 	</div>
